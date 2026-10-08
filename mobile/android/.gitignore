@@ -1,6 +1,9 @@
 gradle-wrapper.jar
 /.gradle
 /captures/
+# Gradle 的 reports/problems/ 写在默认 build 位置 —— 尽管项目的 build 目录
+# 被重定向到了 ../../build，这个目录仍会被创建。
+/build/
 /gradlew
 /gradlew.bat
 /local.properties
