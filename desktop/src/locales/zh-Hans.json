@@ -246,6 +246,7 @@
       "hosted-communities": "托管社区",
       "invites": "邀请",
       "moderation": "内容审核",
+      "relay-admin": "管理",
       "custom-emoji": "自定义表情",
       "local-archive": "本地归档",
       "mobile": "移动端",
@@ -2069,7 +2070,9 @@
     },
     "effort": {
       "applies-next-session": "将在下次会话启动时生效。",
-      "field-label": "推理强度"
+      "field-label": "推理强度",
+      "maybe-unsupported": "此模型可能不支持 {{level}}。",
+      "support-unknown": "尚不确定是否支持 {{level}}。"
     },
     "env-vars": {
       "add": "添加变量",
@@ -4581,7 +4584,9 @@
       "edit-aria": "编辑 {{name}}",
       "removed-toast": "社区已移除",
       "removed-description": "你已不再是该社区的成员，Buzz 已把这个社区从本设备移除。",
-      "leave-error": "无法离开该社区，请重试。"
+      "leave-error": "无法离开该社区，请重试。",
+      "leave-error-details": "{{message}}如果社区已不存在，请改用「从本设备移除」。",
+      "remove-device-error": "无法从本设备移除该社区，请重试。"
     },
     "edit": {
       "title": "编辑社区",

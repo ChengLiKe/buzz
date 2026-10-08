@@ -10,6 +10,8 @@ import {
 import { agentPresenceStartBlockReason } from "@/features/agents/lib/useAgentAvailability";
 import { clearActiveTurnsForAgentOnStop } from "@/features/agents/managedAgentRuntimeHooks";
 import { useTranslation } from "@/i18n";
+import { isRelayRemovedError } from "@/features/agents/managedAgentRelayCleanup";
+import { useCommunities } from "@/features/communities/useCommunities";
 import type {
   Channel,
   ManagedAgent,
@@ -33,6 +35,7 @@ export function useAgentLifecycleActions({
   stopManagedAgent: (pubkey: string) => Promise<unknown>;
 }) {
   const { t } = useTranslation();
+  const relayUrl = useCommunities().activeCommunity?.relayUrl;
   const handleAgentPrimaryAction = React.useCallback(async () => {
     if (!managedAgent) return;
 
@@ -93,6 +96,7 @@ export function useAgentLifecycleActions({
       if (blockReason) throw new Error(blockReason);
       await respawnManagedAgentWithRules({
         agent: managedAgent,
+        relayUrl,
         startManagedAgent,
         stopManagedAgent,
         onStopped: () => clearActiveTurnsForAgentOnStop(managedAgent.pubkey),
@@ -101,13 +105,21 @@ export function useAgentLifecycleActions({
         t("profile.agent-actions.restarted", { name: managedAgent.name }),
       );
     } catch (error) {
+      if (isRelayRemovedError(error)) return;
       toast.error(
         error instanceof Error
           ? error.message
           : t("profile.agent-actions.restart-failed"),
       );
     }
-  }, [availability, managedAgent, startManagedAgent, stopManagedAgent, t]);
+  }, [
+    availability,
+    managedAgent,
+    relayUrl,
+    startManagedAgent,
+    stopManagedAgent,
+    t,
+  ]);
 
   return { handleAgentPrimaryAction, handleAgentRestart };
 }

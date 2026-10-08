@@ -52,12 +52,18 @@ type SettingsViewProps = SettingsPanelProps & {
 
 type SettingsNavGroupId = "personal" | "communities" | "app";
 
-const settingsNavGroups: Array<{
+/**
+ * `label` is the canonical English group name (tests look groups up by it);
+ * the visible title is resolved through `navGroupLabel(id)`.
+ */
+export const settingsNavGroups: Array<{
   id: SettingsNavGroupId;
+  label: string;
   sections: SettingsSection[];
 }> = [
   {
     id: "personal",
+    label: "Personal",
     sections: [
       "profile",
       "appearance",
@@ -71,10 +77,12 @@ const settingsNavGroups: Array<{
   },
   {
     id: "communities",
-    sections: ["hosted-communities", "community-members"],
+    label: "Communities",
+    sections: ["hosted-communities", "community-members", "relay-admin"],
   },
   {
     id: "app",
+    label: "App",
     sections: ["agents", "compute", "experimental", "mobile", "updates"],
   },
 ];
@@ -162,6 +170,13 @@ export function SettingsView({
       // Open relays have no membership snapshot or invite controls.
       if (s.value === "community-members") {
         return canManageCommunityMembers(myMembershipQuery.data);
+      }
+      // Relay admin surfaces the relay admin console. Always reachable so an
+      // operator can enter a manual origin even when NIP-11 discovery is
+      // absent, invalid, or pending — hiding the entry would lock them out of
+      // the only place to configure one. Auth still gates the panel itself.
+      if (s.value === "relay-admin") {
+        return true;
       }
       return true;
     });

@@ -246,6 +246,7 @@
       "hosted-communities": "Hosted communities",
       "invites": "Invites",
       "moderation": "Moderation",
+      "relay-admin": "Admin",
       "custom-emoji": "Custom emoji",
       "local-archive": "Local archive",
       "mobile": "Mobile",
@@ -2069,7 +2070,9 @@
     },
     "effort": {
       "applies-next-session": "Applied at the next session start.",
-      "field-label": "Thinking effort"
+      "field-label": "Thinking effort",
+      "maybe-unsupported": "This model may not support {{level}}.",
+      "support-unknown": "Support for {{level}} isn't known yet."
     },
     "env-vars": {
       "add": "Add variable",
@@ -4581,7 +4584,9 @@
       "edit-aria": "Edit {{name}}",
       "removed-toast": "Community removed",
       "removed-description": "You were no longer a member, so Buzz removed the community from this device.",
-      "leave-error": "Couldn't leave the community. Try again."
+      "leave-error": "Couldn't leave the community. Try again.",
+      "leave-error-details": "{{message}} If the community no longer exists, use Remove from this device.",
+      "remove-device-error": "Couldn't remove the community from this device. Try again."
     },
     "edit": {
       "title": "Edit Community",

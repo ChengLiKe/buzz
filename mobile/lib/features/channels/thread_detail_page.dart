@@ -4,8 +4,10 @@ import 'dart:math' as math;
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:buzz/shared/theme/buzz_icons.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 
+import '../../shared/identity_names/identity_names_provider.dart';
 import '../../shared/mentions/agent_identity_provider.dart';
 import '../../shared/relay/relay.dart';
 import '../../shared/theme/theme.dart';
@@ -18,6 +20,8 @@ import '../../shared/widgets/message_author_meta.dart';
 import '../../shared/profile/user_cache_provider.dart';
 import '../../shared/profile/user_profile.dart';
 import 'android_ime_lift.dart';
+import 'channel.dart';
+import 'channel_identity_names_provider.dart';
 import 'channel_link_navigation.dart';
 import 'channel_messages_provider.dart';
 import 'channel_typing_provider.dart';
@@ -27,6 +31,7 @@ import 'channels_provider.dart';
 import 'compose_bar.dart';
 import 'composer_dock_size_reporter.dart';
 import 'date_formatters.dart';
+import 'dm_channel_labels.dart';
 import 'day_divider.dart';
 import 'ime_metrics_settle_observer.dart';
 import 'initial_thread_tail_settle.dart';
@@ -55,6 +60,7 @@ part 'thread_detail_helpers.dart';
 part 'thread_detail_page/tail_alignment.dart';
 part 'thread_detail_page/thread_message.dart';
 part 'thread_detail_page/avatar.dart';
+part 'thread_detail_page/app_bar.dart';
 
 const _landingHighlightDuration = Duration(seconds: 3);
 const _landingHighlightDelay = Duration(milliseconds: 50);
@@ -148,8 +154,13 @@ class ThreadDetailPage extends HookConsumerWidget {
       liveChannelEvents,
       threadHead.id,
     );
-    final allMsgs = fetchedReplies == null
-        ? allMessages
+    final allMsgs = fetchedReplies == null || !relayRepliesAvailable
+        ? _provisionalThreadMessages(
+            allMessages,
+            fetchedReplies ??
+                formatTimeline(liveChannelEvents, currentPubkey: currentPubkey),
+            liveChannelEvents,
+          )
         : [
             // Only fall back to the pushed-route snapshot when neither source
             // carries the head, and no live deletion has suppressed it. That
@@ -818,35 +829,10 @@ class ThreadDetailPage extends HookConsumerWidget {
         channelNamesMap[ch.name.toLowerCase()] = ch.id;
       }
     });
-    final usesNativeIosGlassBackButton =
-        Navigator.canPop(context) &&
-        Theme.of(context).platform == TargetPlatform.iOS;
 
     return FrostedScaffold(
       resizeToAvoidBottomInset: !usesFixedAndroidImeViewport,
-      appBar: FrostedAppBar(
-        leading: usesNativeIosGlassBackButton
-            ? IosGlassNavigationButton(
-                key: const ValueKey('thread-ios-glass-back'),
-                icon: IosGlassNavigationIcon.back,
-                semanticLabel: 'Back',
-                onPressed: () => Navigator.of(context).maybePop(),
-                width: iosGlassChannelHeaderLeadingWidth,
-                buttonCenterX: iosGlassChannelHeaderButtonCenterX,
-                nativeViewSuppressed: messageActionBackdropActive,
-              )
-            : null,
-        iconColor: context.colors.primary,
-        title: Padding(
-          padding: EdgeInsets.only(
-            left: usesNativeIosGlassBackButton
-                ? iosGlassChannelHeaderTitleSpacing
-                : 0,
-          ),
-          child: const Text('Thread', key: ValueKey('thread-app-bar-title')),
-        ),
-        titleStyle: channelTitleTextStyle,
-      ),
+      appBar: _threadAppBar(context, ref, channel, currentPubkey),
       body: Stack(
         fit: StackFit.expand,
         children: [
@@ -894,6 +880,8 @@ class ThreadDetailPage extends HookConsumerWidget {
                   bottomInset: timelineBottomInset,
                   replies: replies,
                   relayReplyState: relayReplyState,
+                  onRetryReplies: () =>
+                      ref.invalidate(threadRepliesProvider(repliesArgs)),
                   localSendAnimations: localSendAnimations,
                   trackActiveScrollPosition: trackActiveScrollPosition,
                   headIsDeleted: liveDeletionHidesHead,
@@ -913,7 +901,11 @@ class ThreadDetailPage extends HookConsumerWidget {
                 ),
               ),
               if (!isMember || isArchived)
-                _ThreadTypingIndicator(entries: threadTyping, animated: false),
+                _ThreadTypingIndicator(
+                  channelId: channelId,
+                  entries: threadTyping,
+                  animated: false,
+                ),
             ],
           ),
           if (threadViewportVisible)
@@ -936,7 +928,10 @@ class ThreadDetailPage extends HookConsumerWidget {
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      _ThreadTypingIndicator(entries: threadTyping),
+                      _ThreadTypingIndicator(
+                        channelId: channelId,
+                        entries: threadTyping,
+                      ),
                       ComposeBar(
                         channelId: channelId,
                         focusNode: composerFocusNode,

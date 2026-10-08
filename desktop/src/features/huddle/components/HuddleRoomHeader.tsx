@@ -4,6 +4,7 @@ import * as React from "react";
 
 import { useTranslation } from "@/i18n";
 import { useProfileQuery, useSelfProfileCache } from "@/features/profile/hooks";
+import { beginChannelMembershipWrite } from "@/shared/api/channelMembershipWrites";
 import { useIdentityQuery } from "@/shared/api/hooks";
 import { useHuddle, useHuddleLevels } from "../HuddleContext";
 import { useHuddleParticipantRoster } from "../hooks/useHuddleParticipantRoster";
@@ -59,10 +60,14 @@ export function HuddleRoomHeader() {
     async (pubkey: string) => {
       if (!window.confirm(t("huddle.participants.remove-agent-confirm")))
         return;
+      const record = beginChannelMembershipWrite();
       try {
         await invoke("remove_agent_from_huddle", {
           agentPubkey: pubkey,
         });
+        if (state?.ephemeral_channel_id) {
+          record(state.ephemeral_channel_id);
+        }
         setState((current) =>
           current
             ? {
@@ -80,7 +85,7 @@ export function HuddleRoomHeader() {
         console.error("Failed to remove agent from huddle:", error);
       }
     },
-    [t],
+    [t, state?.ephemeral_channel_id],
   );
 
   React.useEffect(() => {

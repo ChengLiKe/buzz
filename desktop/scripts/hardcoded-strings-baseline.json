@@ -1,11 +1,11 @@
 {
   "_comment": "Baseline of accepted hardcoded user-facing English in the desktop UI (spec NFR-007, PR6). Produced by triaging every candidate from `node scripts/check-hardcoded-strings.mjs --report`: entries are grouped per file+category to keep one surface reason from repeating 200 times, but every literal is recorded individually and matched exactly by `<file>|<kind>|<literal>`; there is no wildcard, prefix or directory allowlist, and only `deferred-pr4-surface` may lean on the group note — every other category requires a per-literal reason. Resolve a candidate by translating it (en.json + zh-Hans.json + t()) or by adding an entry naming one of the categories defined in check-hardcoded-strings.mjs. `true-violation` entries always fail the gate. Entries that no longer match a candidate are reported as stale/advisory: prune them when the owning surface is closed out.",
   "version": 1,
-  "generatedBy": "PR6 triage of `node scripts/check-hardcoded-strings.mjs --report` on branch i18n-zh-hans",
+  "generatedBy": "PR6 triage of `node scripts/check-hardcoded-strings.mjs --report` on branch i18n-zh-hans 2026-10-09 additions triaged during the zh-hans × main merge (deferred-pr4-surface).",
   "totals": {
-    "groups": 86,
-    "items": 859,
-    "deferred-pr4-surface": 847,
+    "groups": 100,
+    "items": 1009,
+    "deferred-pr4-surface": 997,
     "brand-name": 4,
     "user-content": 3,
     "protocol-field": 1,
@@ -13,6 +13,532 @@
     "test-fixture": 3
   },
   "entries": [
+    {
+      "file": "src/features/admin-console/AdminConsoleActionsTab.tsx",
+      "category": "deferred-pr4-surface",
+      "note": "Merged from upstream main (2026-10-09) — surface not yet extracted; pending a follow-up localization wave.",
+      "items": [
+        {
+          "kind": "jsx-text",
+          "literal": "Community:"
+        },
+        {
+          "kind": "jsx-text",
+          "literal": "Change"
+        },
+        {
+          "kind": "jsx-text",
+          "literal": "Reason:"
+        },
+        {
+          "kind": "jsx-expr",
+          "literal": "Retry"
+        },
+        {
+          "kind": "jsx-expr",
+          "literal": "Confirm"
+        },
+        {
+          "kind": "jsx-text",
+          "literal": "Discard"
+        },
+        {
+          "kind": "jsx-text",
+          "literal": "Review"
+        },
+        {
+          "kind": "jsx-text",
+          "literal": "Name search only works in the community you're connected to."
+        },
+        {
+          "kind": "attr:placeholder",
+          "literal": "Search by name, or paste an npub or hex key"
+        },
+        {
+          "kind": "attr:placeholder",
+          "literal": "npub or hex key"
+        },
+        {
+          "kind": "jsx-text",
+          "literal": "That's a secret key. Never paste it here."
+        },
+        {
+          "kind": "jsx-text",
+          "literal": "public key"
+        }
+      ]
+    },
+    {
+      "file": "src/features/admin-console/AdminConsoleFeedbackTab.tsx",
+      "category": "deferred-pr4-surface",
+      "note": "Merged from upstream main (2026-10-09) — surface not yet extracted; pending a follow-up localization wave.",
+      "items": [
+        {
+          "kind": "jsx-text",
+          "literal": "No feedback found."
+        },
+        {
+          "kind": "call:toast.success",
+          "literal": "Attachment saved"
+        },
+        {
+          "kind": "jsx-expr",
+          "literal": "Save attachment ({})"
+        },
+        {
+          "kind": "jsx-text",
+          "literal": "Loading…"
+        },
+        {
+          "kind": "attr:alt",
+          "literal": "Feedback attachment"
+        },
+        {
+          "kind": "attr:label",
+          "literal": "Body"
+        },
+        {
+          "kind": "attr:label",
+          "literal": "Submitter"
+        },
+        {
+          "kind": "attr:label",
+          "literal": "Category"
+        },
+        {
+          "kind": "attr:label",
+          "literal": "Community"
+        },
+        {
+          "kind": "attr:label",
+          "literal": "Host"
+        },
+        {
+          "kind": "attr:label",
+          "literal": "Event ID"
+        },
+        {
+          "kind": "attr:label",
+          "literal": "Event created"
+        },
+        {
+          "kind": "attr:label",
+          "literal": "Received"
+        },
+        {
+          "kind": "call:toast.success",
+          "literal": "Feedback marked {}"
+        },
+        {
+          "kind": "jsx-text",
+          "literal": "Status"
+        },
+        {
+          "kind": "jsx-text",
+          "literal": "Back to feedback"
+        },
+        {
+          "kind": "jsx-text",
+          "literal": "Attachments"
+        },
+        {
+          "kind": "jsx-text",
+          "literal": "not shown (display limit reached)."
+        },
+        {
+          "kind": "jsx-expr",
+          "literal": "Error: {}"
+        }
+      ]
+    },
+    {
+      "file": "src/features/admin-console/AdminConsolePanel.tsx",
+      "category": "deferred-pr4-surface",
+      "note": "Merged from upstream main (2026-10-09) — surface not yet extracted; pending a follow-up localization wave.",
+      "items": [
+        {
+          "kind": "prop:label",
+          "literal": "Reports"
+        },
+        {
+          "kind": "prop:label",
+          "literal": "Feedback"
+        },
+        {
+          "kind": "prop:label",
+          "literal": "Actions"
+        },
+        {
+          "kind": "prop:label",
+          "literal": "Staffing"
+        }
+      ]
+    },
+    {
+      "file": "src/features/admin-console/AdminConsolePanelHelpers.tsx",
+      "category": "deferred-pr4-surface",
+      "note": "Merged from upstream main (2026-10-09) — surface not yet extracted; pending a follow-up localization wave.",
+      "items": [
+        {
+          "kind": "jsx-text",
+          "literal": "Loading…"
+        }
+      ]
+    },
+    {
+      "file": "src/features/admin-console/AdminConsoleReportsTab.tsx",
+      "category": "deferred-pr4-surface",
+      "note": "Merged from upstream main (2026-10-09) — surface not yet extracted; pending a follow-up localization wave.",
+      "items": [
+        {
+          "kind": "call:toast.success",
+          "literal": "Enforcement cancelled — report reopened"
+        },
+        {
+          "kind": "call:toast.error",
+          "literal": "Cancel rejected: {}"
+        },
+        {
+          "kind": "jsx-expr",
+          "literal": "Cancel & reopen"
+        },
+        {
+          "kind": "call:toast.success",
+          "literal": "Report resolved: {}"
+        },
+        {
+          "kind": "jsx-text",
+          "literal": "Resolve report"
+        },
+        {
+          "kind": "jsx-text",
+          "literal": "Duration (seconds)"
+        },
+        {
+          "kind": "attr:placeholder",
+          "literal": "Reason (optional)"
+        },
+        {
+          "kind": "jsx-expr",
+          "literal": "Confirm: {}"
+        },
+        {
+          "kind": "call:toast.success",
+          "literal": "Report reopened"
+        },
+        {
+          "kind": "jsx-text",
+          "literal": "Reopen report"
+        },
+        {
+          "kind": "jsx-text",
+          "literal": "Moves this report back to the open queue for re-triage."
+        },
+        {
+          "kind": "jsx-expr",
+          "literal": "The enforcement action already taken is not reversed — reopening does not un-ban, un-timeout, or restore a deleted message."
+        },
+        {
+          "kind": "jsx-expr",
+          "literal": "Reopening does not reverse any enforcement action."
+        },
+        {
+          "kind": "jsx-expr",
+          "literal": "Reopen report"
+        },
+        {
+          "kind": "jsx-text",
+          "literal": "No reports found."
+        },
+        {
+          "kind": "attr:label",
+          "literal": "Community"
+        },
+        {
+          "kind": "attr:label",
+          "literal": "Host"
+        },
+        {
+          "kind": "attr:label",
+          "literal": "Event ID"
+        },
+        {
+          "kind": "jsx-text",
+          "literal": "Reporter"
+        },
+        {
+          "kind": "attr:label",
+          "literal": "Reporter"
+        },
+        {
+          "kind": "attr:label",
+          "literal": "Target kind"
+        },
+        {
+          "kind": "jsx-text",
+          "literal": "Target"
+        },
+        {
+          "kind": "attr:aria-label",
+          "literal": "Copy event ID"
+        },
+        {
+          "kind": "attr:label",
+          "literal": "Target"
+        },
+        {
+          "kind": "attr:label",
+          "literal": "Channel"
+        },
+        {
+          "kind": "attr:label",
+          "literal": "Note"
+        },
+        {
+          "kind": "attr:label",
+          "literal": "Resolved by"
+        },
+        {
+          "kind": "attr:label",
+          "literal": "Resolved at"
+        },
+        {
+          "kind": "attr:label",
+          "literal": "Action ID"
+        },
+        {
+          "kind": "attr:label",
+          "literal": "Created"
+        },
+        {
+          "kind": "jsx-text",
+          "literal": "Reported message"
+        },
+        {
+          "kind": "jsx-text",
+          "literal": "Author"
+        },
+        {
+          "kind": "attr:label",
+          "literal": "Author"
+        },
+        {
+          "kind": "attr:label",
+          "literal": "Content"
+        },
+        {
+          "kind": "attr:label",
+          "literal": "Msg created"
+        },
+        {
+          "kind": "jsx-text",
+          "literal": "Back to reports"
+        }
+      ]
+    },
+    {
+      "file": "src/features/admin-console/AdminConsoleSettingsCard.tsx",
+      "category": "deferred-pr4-surface",
+      "note": "Merged from upstream main (2026-10-09) — surface not yet extracted; pending a follow-up localization wave.",
+      "items": [
+        {
+          "kind": "jsx-text",
+          "literal": "Access denied"
+        },
+        {
+          "kind": "jsx-text",
+          "literal": "Your pubkey is not authorized as an operator on this relay. Ask a relay operator to add:"
+        },
+        {
+          "kind": "attr:aria-label",
+          "literal": "Copy pubkey"
+        },
+        {
+          "kind": "jsx-text",
+          "literal": "Probing…"
+        },
+        {
+          "kind": "jsx-text",
+          "literal": "Connected as"
+        },
+        {
+          "kind": "jsx-text",
+          "literal": "Auth is disabled on this relay. The admin console is accessible without a credential."
+        },
+        {
+          "kind": "jsx-text",
+          "literal": "No admin API found at this origin. Check the URL matches"
+        },
+        {
+          "kind": "jsx-text",
+          "literal": "Could not reach the relay. Check: network, TLS certificate, DNS, or whether a VPN/SSO layer (e.g. Cloudflare Access) intercepts this host."
+        },
+        {
+          "kind": "attr:title",
+          "literal": "Admin"
+        },
+        {
+          "kind": "attr:description",
+          "literal": "Manage your relay's platform layer: triage cross-community reports, review product feedback, and configure the relay operator roster."
+        },
+        {
+          "kind": "jsx-text",
+          "literal": "Advanced: admin origin"
+        },
+        {
+          "kind": "jsx-text",
+          "literal": "Re-probe"
+        },
+        {
+          "kind": "jsx-text",
+          "literal": "Origin resolved from"
+        },
+        {
+          "kind": "jsx-expr",
+          "literal": "relay config"
+        },
+        {
+          "kind": "jsx-expr",
+          "literal": "relay config (owner fallback)"
+        }
+      ]
+    },
+    {
+      "file": "src/features/admin-console/AdminConsoleStaffingTab.tsx",
+      "category": "deferred-pr4-surface",
+      "note": "Merged from upstream main (2026-10-09) — surface not yet extracted; pending a follow-up localization wave.",
+      "items": [
+        {
+          "kind": "jsx-text",
+          "literal": "Lift ban?"
+        },
+        {
+          "kind": "jsx-text",
+          "literal": "This will remove the active ban for"
+        },
+        {
+          "kind": "jsx-text",
+          "literal": ". They will be able to post again."
+        },
+        {
+          "kind": "jsx-text",
+          "literal": "Cancel"
+        },
+        {
+          "kind": "jsx-text",
+          "literal": "Lift ban"
+        },
+        {
+          "kind": "jsx-text",
+          "literal": "Clear timeout?"
+        },
+        {
+          "kind": "jsx-text",
+          "literal": "This will clear the active timeout for"
+        },
+        {
+          "kind": "jsx-text",
+          "literal": "Clear timeout"
+        },
+        {
+          "kind": "jsx-text",
+          "literal": "Active restrictions"
+        },
+        {
+          "kind": "jsx-text",
+          "literal": "No active bans or timeouts."
+        },
+        {
+          "kind": "jsx-text",
+          "literal": "Remove operator?"
+        },
+        {
+          "kind": "jsx-text",
+          "literal": "This will remove"
+        },
+        {
+          "kind": "jsx-text",
+          "literal": ") from the operator list."
+        },
+        {
+          "kind": "jsx-text",
+          "literal": "You are removing your own operator access. Once removed, you may lose the ability to undo this action."
+        },
+        {
+          "kind": "jsx-text",
+          "literal": "Remove"
+        },
+        {
+          "kind": "jsx-text",
+          "literal": "Add operator"
+        },
+        {
+          "kind": "attr:placeholder",
+          "literal": "64-hex pubkey"
+        },
+        {
+          "kind": "jsx-text",
+          "literal": "No operators configured."
+        },
+        {
+          "kind": "attr:aria-label",
+          "literal": "Change role for {}"
+        },
+        {
+          "kind": "attr:aria-label",
+          "literal": "Remove {}"
+        },
+        {
+          "kind": "attr:title",
+          "literal": "Config-backed — cannot be removed via API"
+        },
+        {
+          "kind": "attr:title",
+          "literal": "Remove operator"
+        }
+      ]
+    },
+    {
+      "file": "src/features/agents/ui/AcpCommandField.tsx",
+      "category": "deferred-pr4-surface",
+      "note": "Merged from upstream main (2026-10-09) — surface not yet extracted; pending a follow-up localization wave.",
+      "items": [
+        {
+          "kind": "jsx-text",
+          "literal": "ACP command"
+        },
+        {
+          "kind": "attr:placeholder",
+          "literal": "Choose an ACP command"
+        },
+        {
+          "kind": "jsx-text",
+          "literal": "Selects the ACP transport used when this agent is deployed."
+        }
+      ]
+    },
+    {
+      "file": "src/features/agents/ui/acpCommandPicker.ts",
+      "category": "deferred-pr4-surface",
+      "note": "Merged from upstream main (2026-10-09) — surface not yet extracted; pending a follow-up localization wave.",
+      "items": [
+        {
+          "kind": "prop:label",
+          "literal": "Buzz ACP (default)"
+        }
+      ]
+    },
+    {
+      "file": "src/features/agents/ui/activityRenderClasses/ThoughtActivity.tsx",
+      "category": "deferred-pr4-surface",
+      "note": "Merged from upstream main (2026-10-09) — surface not yet extracted; pending a follow-up localization wave.",
+      "items": [
+        {
+          "kind": "jsx-text",
+          "literal": "No readable reasoning tokens"
+        }
+      ]
+    },
     {
       "file": "src/features/agents/ui/AgentCardMintDialog.tsx",
       "category": "deferred-pr4-surface",
@@ -613,6 +1139,10 @@
         {
           "kind": "prop:label",
           "literal": "Start now"
+        },
+        {
+          "kind": "call:toast.error",
+          "literal": "{} failed to start{}"
         }
       ]
     },
@@ -894,6 +1424,10 @@
         {
           "kind": "jsx-text",
           "literal": "System prompt override"
+        },
+        {
+          "kind": "attr:placeholder",
+          "literal": "Choose an ACP command"
         }
       ]
     },
@@ -1411,6 +1945,127 @@
         {
           "kind": "jsx-text",
           "literal": "written across all members."
+        }
+      ]
+    },
+    {
+      "file": "src/features/channels/ui/CanvasHistoryPanel.tsx",
+      "category": "deferred-pr4-surface",
+      "note": "Merged from upstream main (2026-10-09) — surface not yet extracted; pending a follow-up localization wave.",
+      "items": [
+        {
+          "kind": "jsx-text",
+          "literal": "Loading history..."
+        },
+        {
+          "kind": "jsx-text",
+          "literal": "No revisions yet."
+        },
+        {
+          "kind": "jsx-expr",
+          "literal": "Couldn't refresh history — showing last known revisions."
+        },
+        {
+          "kind": "jsx-text",
+          "literal": "Restored. We couldn't verify against the latest revision just now — check the canvas if a concurrent edit appears."
+        },
+        {
+          "kind": "jsx-text",
+          "literal": "Current"
+        },
+        {
+          "kind": "jsx-expr",
+          "literal": "Restoring..."
+        },
+        {
+          "kind": "jsx-expr",
+          "literal": "Restore this revision"
+        },
+        {
+          "kind": "jsx-expr",
+          "literal": "Loading..."
+        },
+        {
+          "kind": "jsx-expr",
+          "literal": "Load older"
+        },
+        {
+          "kind": "jsx-text",
+          "literal": "Restore this revision?"
+        },
+        {
+          "kind": "jsx-text",
+          "literal": "This publishes"
+        },
+        {
+          "kind": "jsx-expr",
+          "literal": "{}'s revision from {}"
+        },
+        {
+          "kind": "jsx-expr",
+          "literal": "the selected revision"
+        },
+        {
+          "kind": "jsx-text",
+          "literal": "as the current canvas for everyone in this channel. History is preserved."
+        },
+        {
+          "kind": "jsx-text",
+          "literal": "Cancel"
+        },
+        {
+          "kind": "jsx-text",
+          "literal": "Restore"
+        },
+        {
+          "kind": "jsx-text",
+          "literal": "Identical to the current canvas."
+        }
+      ]
+    },
+    {
+      "file": "src/features/channels/ui/ChannelCanvas.tsx",
+      "category": "deferred-pr4-surface",
+      "note": "Merged from upstream main (2026-10-09) — surface not yet extracted; pending a follow-up localization wave.",
+      "items": [
+        {
+          "kind": "jsx-expr",
+          "literal": "Couldn't refresh canvas — showing last known content."
+        },
+        {
+          "kind": "jsx-text",
+          "literal": "Saved. We couldn't verify against the latest revision just now — check History if a concurrent edit appears."
+        },
+        {
+          "kind": "jsx-expr",
+          "literal": "Hide history"
+        },
+        {
+          "kind": "jsx-expr",
+          "literal": "History"
+        }
+      ]
+    },
+    {
+      "file": "src/features/communities/ui/CommunitySwitcher.tsx",
+      "category": "deferred-pr4-surface",
+      "note": "Merged from upstream main (2026-10-09) — surface not yet extracted; pending a follow-up localization wave.",
+      "items": [
+        {
+          "kind": "jsx-text",
+          "literal": "Remove from this device"
+        },
+        {
+          "kind": "jsx-expr",
+          "literal": "Remove \"{}\" from this device? Buzz won't contact the relay, so your membership isn't revoked. You can add the community again later."
+        },
+        {
+          "kind": "jsx-text",
+          "literal": "Cancel"
+        },
+        {
+          "kind": "jsx-text",
+          "literal": "Remove"
         }
       ]
     },
@@ -3322,6 +3977,30 @@
         {
           "kind": "jsx-text",
           "literal": "Try again"
+        },
+        {
+          "kind": "jsx-expr",
+          "literal": "Enter code on your phone"
+        },
+        {
+          "kind": "jsx-expr",
+          "literal": "Confirm mobile code"
+        },
+        {
+          "kind": "jsx-expr",
+          "literal": "Type the six-digit code shown here into the Buzz mobile app."
+        },
+        {
+          "kind": "jsx-expr",
+          "literal": "Check that the six-digit code matches on both devices, then confirm it."
+        },
+        {
+          "kind": "jsx-expr",
+          "literal": "Finish setup on your phone to connect your mobile app."
+        },
+        {
+          "kind": "jsx-expr",
+          "literal": "Verification code {} {} ready. {}"
         }
       ]
     },
@@ -3635,6 +4314,25 @@
         {
           "kind": "prop:label",
           "literal": "Praise"
+        }
+      ]
+    },
+    {
+      "file": "src/features/settings/ui/SettingsView.tsx",
+      "category": "deferred-pr4-surface",
+      "note": "Merged from upstream main (2026-10-09) — surface not yet extracted; pending a follow-up localization wave.",
+      "items": [
+        {
+          "kind": "prop:label",
+          "literal": "Personal"
+        },
+        {
+          "kind": "prop:label",
+          "literal": "Communities"
+        },
+        {
+          "kind": "prop:label",
+          "literal": "App"
         }
       ]
     },

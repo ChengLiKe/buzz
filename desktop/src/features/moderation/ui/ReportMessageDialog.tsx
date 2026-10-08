@@ -4,7 +4,7 @@ import { toast } from "sonner";
 
 import { useSubmitReportMutation } from "@/features/moderation/hooks";
 import type { ReportType } from "@/features/moderation/hooks";
-import { useTranslation } from "@/i18n";
+import { i18n, useTranslation } from "@/i18n";
 import { Button } from "@/shared/ui/button";
 import {
   Dialog,
@@ -15,6 +15,23 @@ import {
   DialogTitle,
 } from "@/shared/ui/dialog";
 import { Textarea } from "@/shared/ui/textarea";
+
+/**
+ * Extract a human-readable reason from a report mutation error. Returns the
+ * relay's own error message when present, falling back to a generic string.
+ *
+ * Exported for testing.
+ */
+export function reportErrorMessage(error: unknown): string {
+  if (error instanceof Error) {
+    const msg = error.message;
+    // Surface the relay's own reason verbatim. Strip any raw status prefix
+    // (e.g. "400: ") so the copy reads naturally in a toast.
+    const stripped = msg.replace(/^[45]\d\d:\s?/, "").trim();
+    return stripped || i18n.t("moderation.report.submit-failed");
+  }
+  return i18n.t("moderation.report.submit-failed");
+}
 
 export function ReportMessageDialog({
   open,
@@ -76,7 +93,7 @@ export function ReportMessageDialog({
           toast.success(t("moderation.report.submitted"));
           onOpenChange(false);
         },
-        onError: () => toast.error(t("moderation.report.submit-failed")),
+        onError: (error) => toast.error(reportErrorMessage(error)),
       },
     );
   };
